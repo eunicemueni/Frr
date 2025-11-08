@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 // ---- CONFIG ----
-const BACKEND_URL = "https://your-backend-render-url.onrender.com"; // <-- Replace with your Render URL
+const BACKEND_URL = "https://k-stu-3y.onrender.com"; // Render backend URL
 
 const PLANS = [
   { key: "entry", label: "Entry", maxDuration: 6, watermark: true },
@@ -71,7 +71,7 @@ export default function KairahStudio({ userId = "testUser", email = "test@exampl
   };
 
   return (
-    <div className="p-6 font-sans bg-midnight-plum min-h-screen">
+    <div className="p-6 font-sans bg-gray-900 min-h-screen text-white">
       {/* --- Plan Selection --- */}
       <div className="mb-6 flex gap-4">
         {PLANS.map((p) => (
@@ -82,7 +82,7 @@ export default function KairahStudio({ userId = "testUser", email = "test@exampl
               setDuration(p.maxDuration);
             }}
             className={`px-4 py-2 rounded font-bold ${
-              plan === p.key ? "bg-gold text-white" : "bg-gray-700 text-soft-blush"
+              plan === p.key ? "bg-yellow-500 text-black" : "bg-gray-700 text-white"
             }`}
           >
             {p.label}
@@ -91,11 +91,11 @@ export default function KairahStudio({ userId = "testUser", email = "test@exampl
       </div>
 
       {/* --- Video Generator --- */}
-      <div className="bg-gray-900 p-6 rounded shadow-lg max-w-3xl mx-auto">
-        <h2 className="text-2xl font-bold text-gold mb-4">Generate Your Video</h2>
+      <div className="bg-gray-800 p-6 rounded shadow-lg max-w-3xl mx-auto">
+        <h2 className="text-2xl font-bold text-yellow-500 mb-4">Generate Your Video</h2>
 
         <textarea
-          className="w-full p-3 mb-4 rounded border resize-none bg-gray-800 text-white"
+          className="w-full p-3 mb-4 rounded border resize-none bg-gray-700 text-white"
           rows={4}
           placeholder="Enter your prompt..."
           value={prompt}
@@ -103,7 +103,7 @@ export default function KairahStudio({ userId = "testUser", email = "test@exampl
         />
 
         <div className="flex items-center gap-2 mb-4">
-          <label className="font-semibold text-soft-blush">Duration (seconds):</label>
+          <label className="font-semibold">Duration (seconds):</label>
           <input
             type="number"
             value={duration}
@@ -122,13 +122,13 @@ export default function KairahStudio({ userId = "testUser", email = "test@exampl
           onClick={handleGenerate}
           disabled={loading || !prompt}
           className={`px-6 py-2 rounded font-semibold mb-4 ${
-            loading ? "bg-gray-500 cursor-not-allowed" : "bg-gold text-white hover:opacity-90"
+            loading ? "bg-gray-500 cursor-not-allowed" : "bg-yellow-500 text-black hover:opacity-90"
           }`}
         >
           {loading ? "Generating..." : "Generate Video"}
         </button>
 
-        {status && <p className="mb-2 font-semibold text-soft-blush">Status: {status}</p>}
+        {status && <p className="mb-2 font-semibold">Status: {status}</p>}
 
         {videoUrl && (
           <video className="w-full rounded shadow-lg mt-4" controls>
